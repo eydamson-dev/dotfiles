@@ -82,6 +82,23 @@ source $ZSH/oh-my-zsh.sh
 source ~/.fnm_completions
 
 
+# History Settings
+HISTSIZE=100000                  # Number of commands to keep in memory
+SAVEHIST=100000                  # Number of commands to save to file
+HISTFILE=~/.zsh_history          # Location of history file
+
+# Avoid duplicates and improve history behavior
+setopt APPEND_HISTORY            # Append new history lines to the history file
+setopt INC_APPEND_HISTORY        # Add commands to history immediately, not at exit
+setopt SHARE_HISTORY             # Share history across all sessions
+setopt HIST_IGNORE_DUPS          # Ignore duplicate commands
+setopt HIST_IGNORE_ALL_DUPS      # Remove all duplicates from history
+setopt HIST_SAVE_NO_DUPS         # Do not write duplicate commands to history
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming
+setopt HIST_VERIFY               # Verify before running command from history
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks from commands
+setopt HIST_NO_STORE             # Don't store `history` command itself
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
