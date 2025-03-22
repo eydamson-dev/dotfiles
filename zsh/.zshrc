@@ -160,3 +160,10 @@ fi
 # cjcrsg
 export PATH="$PATH:/home/adam/.config/cjcrsg"
 export CJCRSG_ROOT="/home/adam/projects/cjcrsg-mono"
+
+# Source zsh-autocomplete
+source ~/.zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+# Configuration options for zsh-autocomplete
+bindkey '^I' menu-complete
+bindkey "$terminfo[kcbt]" reverse-menu-complete
