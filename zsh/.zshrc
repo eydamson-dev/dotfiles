@@ -160,38 +160,3 @@ fi
 # cjcrsg
 export PATH="$PATH:/home/adam/.config/cjcrsg"
 export CJCRSG_ROOT="/home/adam/projects/cjcrsg-mono"
-
-# Source zsh-autocomplete
-source ~/.zsh-autocomplete/zsh-autocomplete.plugin.zsh
-
-# Configuration options for zsh-autocomplete
-# bindkey '^I' menu-complete
-# bindkey "$terminfo[kcbt]" reverse-menu-complete
-
-bindkey '^I' menu-select
-bindkey -M menuselect '^I' menu-complete
-bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
-
-zstyle ':autocomplete:tab:*' widget-style menu-select
-zstyle ':autocomplete:tab:*' insert-unambiguous yes
-zstyle ':autocomplete:*' min-input 1
-
-# Configure zsh-autocomplete menu highlighting
-zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*' menu select search
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# Set specific highlight colors for selected completion item
-# zstyle ':completion:*:default' list-colors '=*=01;33' # Bright yellow highlighting
-
-# Ensure menu selection is properly configured for zsh-autocomplete
-zstyle ':autocomplete:*' widget-style menu-select
-zstyle ':autocomplete:*:history-lines' menu yes
-zstyle ':autocomplete:tab:*' completion select
-zstyle ':autocomplete:tab:*' fzf-completion yes
-
-# Reinforce highlight settings specifically for autocomplete
-zstyle ':autocomplete:*' list-colors ${(s.:.)LS_COLORS} '=*=01;33'
-
-# Additional menu configuration
-zstyle ':completion:*' group-name ''
-# zstyle ':completion:*:descriptions' format '%F{yellow}%B--- %d%b%f'
