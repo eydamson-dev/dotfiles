@@ -74,6 +74,7 @@ ZSH_THEME="robbyrussell"
 plugins=(
   git
   fzf
+  zsh-autosuggestions
 )
 
 export FZF_BASE=/home/linuxbrew/.linuxbrew/opt/fzf/ #needs to be above oh-my-zsh
