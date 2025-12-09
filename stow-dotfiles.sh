@@ -10,7 +10,7 @@ cd "$dotfiles_dir" || { echo "Error: Cannot find $dotfiles_dir"; exit 1; }
 dotfiles=$(ls -d */ 2>/dev/null | sed 's#/##')
 
 # Stow each dotfile category
-echo "Stowing dotfiles..."
+echo "Stowing dotfiles from $dotfiles_dir..."
 for folder in $dotfiles; do
     echo "- Stowing $folder"
     stow "$folder"
