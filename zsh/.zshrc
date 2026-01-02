@@ -1,11 +1,12 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
+# load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
@@ -70,35 +71,14 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-
 plugins=(
   git
   fzf
-  zsh-autosuggestions
+  fnm
 )
 
-export FZF_BASE=/home/linuxbrew/.linuxbrew/opt/fzf/ #needs to be above oh-my-zsh
-
 source $ZSH/oh-my-zsh.sh
-source ~/.fnm_completions
-
-
-# History Settings
-HISTSIZE=100000                  # Number of commands to keep in memory
-SAVEHIST=100000                  # Number of commands to save to file
-HISTFILE=~/.zsh_history          # Location of history file
-
-# Avoid duplicates and improve history behavior
-setopt APPEND_HISTORY            # Append new history lines to the history file
-setopt INC_APPEND_HISTORY        # Add commands to history immediately, not at exit
-setopt SHARE_HISTORY             # Share history across all sessions
-setopt HIST_IGNORE_DUPS          # Ignore duplicate commands
-setopt HIST_IGNORE_ALL_DUPS      # Remove all duplicates from history
-setopt HIST_SAVE_NO_DUPS         # Do not write duplicate commands to history
-setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming
-setopt HIST_VERIFY               # Verify before running command from history
-setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks from commands
-setopt HIST_NO_STORE             # Don't store `history` command itself
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
 
@@ -111,53 +91,27 @@ setopt HIST_NO_STORE             # Don't store `history` command itself
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch $(uname -m)"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
-
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(fnm env --use-on-cd)"
-
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-# pnpm
-export PNPM_HOME="/home/adam/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-
-# custom commands
-alias tnvim='~/.tmux/custom_commands/tnvim.sh'
-
-
-# composer, laravel
-export PATH=~/.config/composer/vendor/bin:$PATH
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # fnm
-FNM_PATH="~/.local/share/fnm"
+FNM_PATH="/home/eydamson/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/adam/.local/share/fnm:$PATH"
+  export PATH="$FNM_PATH:$PATH"
   eval "`fnm env`"
 fi
-
-# cjcrsg
-export PATH="$PATH:/home/adam/.config/cjcrsg"
-export CJCRSG_ROOT="/home/adam/projects/cjcrsg-mono"
