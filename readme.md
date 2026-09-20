@@ -45,20 +45,51 @@ in `~/.zshrc` (or `~/.bashrc`).
 
 ## Windows / WSL notes
 
-Development happens in WSL, so the paths are the same as Linux. One service
-lives on the Windows host and must be reachable from WSL:
+Development happens in WSL, so the paths are the same as Linux.
 
-- **Obsidian MCP** — Obsidian runs as a native Windows app; its MCP plugin
-  listens on `127.0.0.1:27124`. Enable **mirrored networking** so `127.0.0.1`
-  is shared. Put this in `C:\Users\<you>\.wslconfig`:
+### Running opencode on Windows
 
-  ```ini
-  [wsl2]
-  networkingMode=mirrored
+- **TUI inside WSL (recommended)** — `cd ~/projects/<name> && opencode`.
+  Git, node, pnpm, and all tooling run inside WSL. Most reliable for projects
+  stored in the WSL filesystem.
+
+- **Desktop app + WSL server** — run a server in WSL and point the Desktop app
+  at it:
+
+  ```sh
+  # in WSL
+  opencode serve --hostname 0.0.0.0 --port 4096
   ```
 
-  Then `wsl --shutdown` and reopen. A copy is provided at `windows/.wslconfig`
-  (copy it to Windows manually; it is not installed by `setup.sh`).
+  Then in the Desktop app, connect to `http://localhost:4096`.
+
+  Note: this is currently unstable — the Desktop app's project picker passes
+  Windows UNC paths (`\\wsl.localhost\...`) into the WSL server, which breaks
+  bash tool calls. Native WSL-backend support is still in progress.
+
+- **Desktop app (native Windows backend)** — not recommended for WSL projects:
+  tools run on Windows instead of WSL, and file access through
+  `\\wsl.localhost` is slow.
+
+### Obsidian MCP from WSL
+
+Obsidian runs as a native Windows app; its MCP plugin listens on
+`127.0.0.1:27124`. If the opencode backend runs **inside WSL** (TUI, or
+Desktop → WSL server), it must reach that Windows service, so enable
+**mirrored networking**:
+
+Put this in `C:\Users\<you>\.wslconfig`:
+
+```ini
+[wsl2]
+networkingMode=mirrored
+```
+
+Then `wsl --shutdown` and reopen. A copy is provided at `windows/.wslconfig`
+(copy it to Windows manually; it is not installed by `setup.sh`).
+
+If the opencode backend runs natively on Windows instead, `localhost:27124`
+works directly and mirrored networking is not required.
 
 ## Sync workflow
 
