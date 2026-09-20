@@ -106,3 +106,32 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosugges
 
 Verify: `~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh` exists (referenced
 by `~/.zshrc`).
+
+## 8. tmux — tpm, catppuccin, and plugins
+
+The tmux config uses tpm (Tmux Plugin Manager) and the catppuccin theme. Both
+must be cloned manually before plugins can load. Note the config uses prefix
+`Alt+q` (not `Ctrl+b`).
+
+1. Clone tpm:
+
+   ```sh
+   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+   ```
+
+2. Clone the catppuccin theme:
+
+   ```sh
+   git clone https://github.com/catppuccin/tmux ~/.config/tmux/plugins/catppuccin
+   ```
+
+3. Start tmux, then install the plugins listed in `@plugin` (tmux-sensible,
+   tmux-yank) by pressing `Alt+q` then `I`.
+
+4. Reload the config:
+
+   ```sh
+   tmux source-file ~/.config/tmux/tmux.conf
+   ```
+
+Verify: `tmux -V` shows 3.2+, and the catppuccin status bar renders.
