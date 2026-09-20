@@ -9,7 +9,7 @@ declare -A TARGETS=(
   [opencode]="$HOME/.config/opencode"
   [nvim]="$HOME/.config/nvim"
   [agents]="$HOME/.agents"
-  [tmux]="$HOME"
+  [tmux]="$HOME/.config/tmux"
   [zsh]="$HOME"
 )
 

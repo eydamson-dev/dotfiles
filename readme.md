@@ -12,7 +12,7 @@ Each top-level folder is a package that maps to an install location:
 | `opencode` | `~/.config/opencode/`    |
 | `nvim`     | `~/.config/nvim/`        |
 | `agents`   | `~/.agents/`             |
-| `tmux`     | `~/.tmux.conf`           |
+| `tmux`     | `~/.config/tmux/`        |
 | `zsh`      | `~/.zshrc`               |
 
 ## Install

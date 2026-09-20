@@ -5,6 +5,9 @@
 nvim/plugin/
 nvim/neoclip.sqlite3
 
+# tmux plugin manager state (installed by tpm)
+tmux/plugins/
+
 # secrets / local env
 .env
 .env.local
