@@ -66,19 +66,13 @@ if [[ " ${RESOLVED[*]} " == *" opencode "* ]]; then
   printf '\nPaste your Obsidian MCP API key (blank to keep current): '
   read -r token
   if [[ -n "$token" ]]; then
-    shellrc=""
-    [[ -f "$HOME/.zshrc" ]] && shellrc="$HOME/.zshrc"
-    [[ -z "$shellrc" && -f "$HOME/.bashrc" ]] && shellrc="$HOME/.bashrc"
-    if [[ -n "$shellrc" ]]; then
-      if grep -q 'OBSIDIAN_MCP_TOKEN' "$shellrc" 2>/dev/null; then
-        echo "OBSIDIAN_MCP_TOKEN already present in $shellrc"
-      else
-        printf '\nexport OBSIDIAN_MCP_TOKEN="%s"\n' "$token" >> "$shellrc"
-        echo "Added OBSIDIAN_MCP_TOKEN to $shellrc"
-      fi
+    secrets_file="$HOME/.config/secrets/env"
+    mkdir -p "$(dirname "$secrets_file")"
+    if grep -q 'OBSIDIAN_MCP_TOKEN' "$secrets_file" 2>/dev/null; then
+      echo "OBSIDIAN_MCP_TOKEN already present in $secrets_file"
     else
-      echo "No ~/.zshrc or ~/.bashrc found. Set it manually:"
-      printf 'export OBSIDIAN_MCP_TOKEN="%s"\n' "$token"
+      printf 'export OBSIDIAN_MCP_TOKEN="%s"\n' "$token" >> "$secrets_file"
+      echo "Added OBSIDIAN_MCP_TOKEN to $secrets_file"
     fi
   fi
 fi

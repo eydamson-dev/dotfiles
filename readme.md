@@ -63,10 +63,22 @@ target files, so back up anything local you want to keep.
 
 ## Secrets
 
-The Obsidian MCP API key is **not** committed. `opencode/opencode.json`
-references it as `{env:OBSIDIAN_MCP_TOKEN}`. When you install the `opencode`
-package, `setup.sh` prompts for the key and saves it as an exported variable
-in `~/.zshrc` (or `~/.bashrc`).
+Secrets are never committed. `opencode/opencode.json` references them via
+`{env:VAR}` placeholders (e.g. `{env:OBSIDIAN_MCP_TOKEN}`).
+
+Machine-local secrets live in a gitignored file that `~/.zshenv` sources:
+
+```sh
+~/.config/secrets/env
+```
+
+Create it from the committed template and fill in your keys:
+
+```sh
+cp secrets/env.example ~/.config/secrets/env
+```
+
+See [`docs/manual-setup.md`](docs/manual-setup.md) for how to add AI API keys.
 
 ## Adding a package
 
