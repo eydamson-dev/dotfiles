@@ -43,7 +43,8 @@ Notes:
   then `fnm install --lts`). Needed by opencode's chrome-devtools MCP and by
   nvim's LSP servers.
 - `install-prereqs.sh` prints any remaining manual steps (GUI apps, curl
-  installers, git clones) at the end.
+  installers, git clones) at the end. Step-by-step guides for each are in
+  [`docs/manual-setup.md`](docs/manual-setup.md).
 
 ## Install
 

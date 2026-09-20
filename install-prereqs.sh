@@ -105,6 +105,8 @@ if [[ ${#MANUAL[@]} -gt 0 ]]; then
   echo
   echo "Remaining setup (run manually):"
   printf '%s\n' "${MANUAL[@]}" | sort -u | while read -r line; do echo "  - $line"; done
+  echo
+  echo "Step-by-step guides: docs/manual-setup.md"
 fi
 
 echo "Done."
