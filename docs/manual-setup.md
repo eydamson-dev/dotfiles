@@ -101,11 +101,11 @@ Then restore your dotfiles config:
 ## 7. zsh-autosuggestions
 
 ```sh
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 ```
 
-Verify: `~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh` exists (referenced
-by `~/.zshrc`).
+Verify: `~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh`
+exists (referenced by `~/.zshrc`).
 
 ## 8. tmux — tpm, catppuccin, and plugins
 
