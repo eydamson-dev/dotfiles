@@ -5,7 +5,7 @@
       "type": "remote",
       "url": "https://127.0.0.1:27124/mcp/",
       "headers": {
-        "Authorization": "Bearer {env:OBSIDIAN_MCP_TOKEN}"
+        "Authorization": "Bearer {file:~/.config/secrets/obsidian-token}"
       }
     },
     "chrome-devtools": {

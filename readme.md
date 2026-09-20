@@ -63,22 +63,16 @@ target files, so back up anything local you want to keep.
 
 ## Secrets
 
-Secrets are never committed. `opencode/opencode.json` references them via
-`{env:VAR}` placeholders (e.g. `{env:OBSIDIAN_MCP_TOKEN}`).
+Secrets are never committed. opencode references them via `{env:VAR}` or
+`{file:path}` placeholders.
 
-Machine-local secrets live in a gitignored file that `~/.zshenv` sources:
+- **Obsidian MCP token** — a raw file at `~/.config/secrets/obsidian-token`,
+  referenced as `{file:~/.config/secrets/obsidian-token}` so it works even when
+  opencode is launched outside the shell (e.g. the Desktop app).
+- **AI provider keys** — a gitignored env file at `~/.config/secrets/env`
+  (sourced by `~/.zshenv`), referenced as `{env:VAR}`.
 
-```sh
-~/.config/secrets/env
-```
-
-Create it from the committed template and fill in your keys:
-
-```sh
-cp secrets/env.example ~/.config/secrets/env
-```
-
-See [`docs/manual-setup.md`](docs/manual-setup.md) for how to add AI API keys.
+See [`docs/manual-setup.md`](docs/manual-setup.md) for details.
 
 ## Adding a package
 

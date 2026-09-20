@@ -46,10 +46,10 @@ opencode --version
 2. Open your "Engineering" vault.
 3. Install the Obsidian MCP community plugin (Settings → Community plugins).
 4. Enable it and note its API key.
-5. Add the key to `~/.config/secrets/env` (see "Secrets and API keys" below):
+5. Save the key to a raw file (see "Secrets and API keys" below):
 
    ```sh
-   export OBSIDIAN_MCP_TOKEN="<your-api-key>"
+   printf '%s' "<your-api-key>" > ~/.config/secrets/obsidian-token
    ```
 
 Verify: Obsidian must be running for the MCP to work. In opencode, the Obsidian
@@ -138,8 +138,27 @@ Verify: `tmux -V` shows 3.2+, and the catppuccin status bar renders.
 
 ## 9. Secrets and API keys
 
-Secrets are never committed. They live in a single machine-local file that
-`~/.zshenv` sources:
+Secrets are never committed. There are two mechanisms:
+
+### Obsidian MCP token (raw file)
+
+Stored as a raw file (no trailing newline) so opencode can read it directly
+with `{file:...}` — this works even when opencode is launched outside the
+shell (e.g. the Desktop app).
+
+```sh
+printf '%s' "<your-api-key>" > ~/.config/secrets/obsidian-token
+```
+
+`opencode.json` references it:
+
+```jsonc
+"headers": { "Authorization": "Bearer {file:~/.config/secrets/obsidian-token}" }
+```
+
+### AI provider keys (environment variables)
+
+These live in a machine-local env file that `~/.zshenv` sources:
 
 ```text
 ~/.config/secrets/env
@@ -154,15 +173,13 @@ cp ~/projects/dotfiles/secrets/env.example ~/.config/secrets/env
 Then edit it with your real keys:
 
 ```sh
-export OBSIDIAN_MCP_TOKEN="..."
 export ANTHROPIC_API_KEY="..."
 export OPENAI_API_KEY="..."
 ```
 
 ### Referencing keys from opencode
 
-Add a `provider` block to `opencode.json` and reference keys with `{env:VAR}`
-(or `{file:path}` for a raw file value):
+Add a `provider` block to `opencode.json` and reference keys with `{env:VAR}`:
 
 ```jsonc
 {
@@ -176,5 +193,4 @@ Add a `provider` block to `opencode.json` and reference keys with `{env:VAR}`
 ### Referencing keys from nvim
 
 The AI plugins (`avante`, `copilot`, `mcphub`) read the same environment
-variables, so once they are in `~/.config/secrets/env` they are available to
-both opencode and nvim.
+variables from `~/.config/secrets/env`.

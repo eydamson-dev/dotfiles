@@ -66,14 +66,11 @@ if [[ " ${RESOLVED[*]} " == *" opencode "* ]]; then
   printf '\nPaste your Obsidian MCP API key (blank to keep current): '
   read -r token
   if [[ -n "$token" ]]; then
-    secrets_file="$HOME/.config/secrets/env"
-    mkdir -p "$(dirname "$secrets_file")"
-    if grep -q 'OBSIDIAN_MCP_TOKEN' "$secrets_file" 2>/dev/null; then
-      echo "OBSIDIAN_MCP_TOKEN already present in $secrets_file"
-    else
-      printf 'export OBSIDIAN_MCP_TOKEN="%s"\n' "$token" >> "$secrets_file"
-      echo "Added OBSIDIAN_MCP_TOKEN to $secrets_file"
-    fi
+    token_file="$HOME/.config/secrets/obsidian-token"
+    mkdir -p "$(dirname "$token_file")"
+    printf '%s' "$token" > "$token_file"
+    chmod 600 "$token_file"
+    echo "Wrote Obsidian MCP token to $token_file"
   fi
 fi
 
