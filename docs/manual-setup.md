@@ -116,7 +116,7 @@ must be cloned manually before plugins can load. Note the config uses prefix
 1. Clone tpm:
 
    ```sh
-   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+   git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
    ```
 
 2. Clone the catppuccin theme:

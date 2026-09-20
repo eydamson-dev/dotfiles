@@ -75,7 +75,7 @@ for pkg in "${RESOLVED[@]}"; do
       ;;
     tmux)
       add_sys tmux git
-      MANUAL[tpm]="tpm: git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm"
+      MANUAL[tpm]="tpm: git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm"
       MANUAL[catppuccin]="catppuccin theme: git clone https://github.com/catppuccin/tmux ~/.config/tmux/plugins/catppuccin"
       MANUAL[tpm-install]="tmux plugins: start tmux, press Alt+q then I"
       MANUAL[nerdfont]="Nerd Font (optional, for status bar icons)"
