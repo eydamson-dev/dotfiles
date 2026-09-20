@@ -15,6 +15,36 @@ Each top-level folder is a package that maps to an install location:
 | `tmux`     | `~/.config/tmux/`        |
 | `zsh`      | `~/.zshrc`               |
 
+## Prerequisites
+
+`install-prereqs.sh` installs the system packages each config needs (Fedora
+`dnf`, Debian/Ubuntu `apt`, or macOS `brew`):
+
+```sh
+./install-prereqs.sh          # interactive menu, or:
+./install-prereqs.sh nvim     # a specific package
+./install-prereqs.sh all      # everything
+```
+
+Per-package requirements:
+
+| Package    | System packages                      | Other |
+| ---------- | ------------------------------------ | ----- |
+| `opencode` | git, curl                            | opencode CLI, Obsidian + Obsidian MCP plugin |
+| `nvim`     | neovim, ripgrep, git, fd, python3+pip | Nerd Font (optional), stylua (optional) |
+| `tmux`     | tmux, git                            | Nerd Font (optional) |
+| `zsh`      | zsh, fzf                             | oh-my-zsh, zsh-autosuggestions |
+| `agents`   | —                                    | — |
+
+Notes:
+
+- **Node.js is installed via [fnm](https://github.com/Schniz/fnm)**, not the
+  system package manager (`curl -fsSL https://fnm.vercel.app/install | bash`,
+  then `fnm install --lts`). Needed by opencode's chrome-devtools MCP and by
+  nvim's LSP servers.
+- `install-prereqs.sh` prints any remaining manual steps (GUI apps, curl
+  installers, git clones) at the end.
+
 ## Install
 
 ```sh
