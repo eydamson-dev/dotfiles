@@ -1,1 +1,15 @@
+# zsh
 .zcompdump*
+
+# neovim runtime state (not config)
+nvim/plugin/
+nvim/neoclip.sqlite3
+
+# secrets / local env
+.env
+.env.local
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
